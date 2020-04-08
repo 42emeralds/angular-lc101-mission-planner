@@ -9,6 +9,8 @@ export class CrewComponent implements OnInit {
 
   inCrew: boolean = false;
   crew: object[] = [];
+  index: number;
+  activeCrew: boolean;
 
   candidates: object[] = [
     {name: "Sally Ride", photo: 'https://handlers.education.launchcode.org/static/images/sally-ride.jpg'},
@@ -25,5 +27,16 @@ export class CrewComponent implements OnInit {
   ngOnInit() { }
 
   // Code the 'addCrewMember' function here:
+  addCrewMember (candidate: object) {
+    this.inCrew = this.crew.includes(candidate);
+    this.index = this.crew.indexOf(candidate);
+    if (this.inCrew === false && this.crew.length < 3) {
+      this.crew.push(candidate);
+      
+    } if (this.inCrew === true) {
+      this.crew.splice(this.index, 1);
+    }
+  };
 
 }
+
